@@ -11,6 +11,39 @@ Datastore abstracted to primative types. We want to be the
 - Binary Interfaces
 - CRDT Storage per types
 
+USAGE
+
+=== 
+# Models
+
+User {
+    name String required
+    email String 
+    phone Phone
+    address String 
+}
+
+Phone {
+    international code: number default 1
+    number: validate 10
+}
+
+
+===
+``` python
+
+import quick
+from models *
+
+
+users = quick.List(Users) 
+
+
+
+```
+# From invocation to End No Abstraction 
+
+
 
 LICENSE
 ===
