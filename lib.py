@@ -41,6 +41,25 @@ def load():
             Fast(k, globals()[k])
 
 
+def delete():
+
+    r = Redis()
+
+    # # iterate a list in batches of size n
+    # def batcher(iterable, n):
+    #     args = [iter(iterable)] * n
+    #     return zip_longest(*args)
+
+    # # in batches of 500 delete keys matching user:*
+    # for keybatch in batcher(r.scan_iter('user:*'),500):
+    #     print("keybatch", keybatch)
+    #     r.delete(*keybatch)
+    for key in r.scan_iter("*"):
+        # delete the key
+        r.delete(key)
+
+def pk():
+    print(Redis().keys())
 
 if __name__ == "__main__":
     load()
