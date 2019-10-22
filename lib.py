@@ -19,6 +19,9 @@ class Fast(object):
         elif type(val) == str:
             # print('str')
             instance = hot_redis.String(val)
+        elif type(val) == int:
+            # print('int')
+            instance = hot_redis.Numeric(val)
         elif callable(val):
             print('function')
             return None
@@ -37,6 +40,10 @@ def load():
 
 
 if __name__ == "__main__":
+    load()
+    x = 1
+
+
     load()
 
 
