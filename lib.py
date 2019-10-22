@@ -5,49 +5,39 @@ ignore_list = ["hot_redis", "Fast", "ignore_list", "main"]
 
 class Fast(object):
 
-    def __init__(self, object):
+    def __init__(self, var, val):
 
-        if type(object) == dict:
-            print('dict')
-            instance = hot_redis.Dict(object)
-        elif type(object) == list:
-            print('list')
-            instance = hot_redis.List(object)
-        elif type(object) == set:
-            print('set')
-            instance = hot_redis.Set(object)
-        elif type(object) == str:
-            print('str')
-            instance = hot_redis.String(object)
+        if type(val) == dict:
+            # print('dict')
+            instance = hot_redis.Dict(val)
+        elif type(val) == list:
+            # print('list')
+            instance = hot_redis.List(val)
+        elif type(val) == set:
+            # print('set')
+            instance = hot_redis.Set(val)
+        elif type(val) == str:
+            # print('str')
+            instance = hot_redis.String(val)
+        elif callable(val):
+            print('function')
+            return None
         else:
-            print(type(object))
+            print(type(val))
             # instance = hot_redis(instance)
         self.instance = instance
 
 
-Fast([]) 
-Fast('foo')
-Fast({})
-
-x = 2 
-y = 6
-
-VALUES = [ k for v, k in enumerate(globals()) if not k.startswith('_') and k not in ignore_list ]
-
-print(VALUES)
-
-foo = {}
-
-def main():
+def load():
     for k in globals().keys():
         if not k.startswith('_') and k not in ignore_list:
             print(k)
-            Fast(k)
+            Fast(k, globals()[k])
 
 
 
 if __name__ == "__main__":
-    main()
+    load()
 
 
 
