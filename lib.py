@@ -24,11 +24,32 @@ class Fast(object):
             # instance = hot_redis(instance)
         self.instance = instance
 
-        self.instance = object
 
 Fast([]) 
 Fast('foo')
 Fast({})
+
+x = 2 
+y = 6
+
+VALUES = [ k for v, k in enumerate(globals()) if not k.startswith('_') and k not in ignore_list ]
+
+print(VALUES)
+
+foo = {}
+
+def main():
+    for k in globals().keys():
+        if not k.startswith('_') and k not in ignore_list:
+            print(k)
+            Fast(k)
+
+
+
+if __name__ == "__main__":
+    main()
+
+
 
 # List                list                          list
 # Set                 set                           set
