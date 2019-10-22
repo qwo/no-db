@@ -1,5 +1,7 @@
 
+import hot_redis 
 
+ignore_list = ["hot_redis", "Fast", "ignore_list", "main"]
 
 class Fast(object):
 
@@ -7,14 +9,20 @@ class Fast(object):
 
         if type(object) == dict:
             print('dict')
+            instance = hot_redis.Dict(object)
         elif type(object) == list:
             print('list')
+            instance = hot_redis.List(object)
         elif type(object) == set:
             print('set')
+            instance = hot_redis.Set(object)
         elif type(object) == str:
             print('str')
+            instance = hot_redis.String(object)
         else:
             print(type(object))
+            # instance = hot_redis(instance)
+        self.instance = instance
 
         self.instance = object
 
