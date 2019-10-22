@@ -39,7 +39,7 @@ class Fast(object):
         self.instance = instance
 
 
-def load():
+def save():
     for k in globals().keys():
         if not k.startswith('_') and k not in ignore_list:
             print(k)
@@ -66,13 +66,20 @@ def delete():
 def pk():
     print(Redis().keys())
 
+def load():
+    for k in Redis().keys():
+        globals()[str(k)] = Redis().get(str(k))
+
 if __name__ == "__main__":
+    # delete()
     load()
-    x = 1
-
+    y = "Cat"
 
     load()
-
+    print('hello', Redis().get('x'))
+    print(Redis().keys())
+    pk()
+    save()
 
 
 # List                list                          list
