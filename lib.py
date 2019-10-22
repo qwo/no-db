@@ -25,12 +25,17 @@ class Fast(object):
         elif type(val) == int:
             # print('int')
             instance = hot_redis.Numeric(val, key=var)
+        elif type(val) == None:
+            # Not handled
+            print('None Not handled')
         elif callable(val):
             print('function')
             return None
         else:
             print(type(val))
+            return None
             # instance = hot_redis(instance)
+        print("debug: ", var, val)
         self.instance = instance
 
 
