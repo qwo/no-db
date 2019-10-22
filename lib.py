@@ -1,5 +1,8 @@
 
 import hot_redis 
+from redis.client import Redis
+
+from itertools import zip_longest
 
 ignore_list = ["hot_redis", "Fast", "ignore_list", "main"]
 
@@ -9,19 +12,19 @@ class Fast(object):
 
         if type(val) == dict:
             # print('dict')
-            instance = hot_redis.Dict(val)
+            instance = hot_redis.Dict(val, key=var)
         elif type(val) == list:
             # print('list')
-            instance = hot_redis.List(val)
+            instance = hot_redis.List(val, key=var)
         elif type(val) == set:
             # print('set')
-            instance = hot_redis.Set(val)
+            instance = hot_redis.Set(val, key=var)
         elif type(val) == str:
             # print('str')
-            instance = hot_redis.String(val)
+            instance = hot_redis.String(val, key=var)
         elif type(val) == int:
             # print('int')
-            instance = hot_redis.Numeric(val)
+            instance = hot_redis.Numeric(val, key=var)
         elif callable(val):
             print('function')
             return None
