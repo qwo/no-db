@@ -107,14 +107,26 @@ def observerables(obs):
             globals()[str(k)] = ""
 
 
+def magic(func):
+    def wrapper():
+        load()
+        func()
+        save()
+    return wrapper
+
+@magic
+def main():
+    for i in "Recurse!":
+        phrase = phrase + i
+
 if __name__ == "__main__":
+    # main()
     # delete()
     load()
     observerables(['phrase'])
     print (phrase)
-    print('type', type(phrase))
-    for i in "Recurse!":
-        phrase = phrase + i
+    # print('type', type(phrase))
+
     save()
 
 
