@@ -73,18 +73,48 @@ def keys():
     return [i.decode() for i in Redis().keys()]
 
 def load():
-    for k in Redis().keys():
-        globals()[str(k)] = Redis().get(str(k))
+    for k in keys():
+        print('PRE-K', k)
+        fetch = _get(k)
+        print('fetched: {} for {}'.format(fetch, k) )
+        globals()[k] = fetch
+
+
+def _get(key):
+    typecheck = Client.type(key).decode()
+    print("THE TYPECHECK", typecheck, key)
+
+    if typecheck == 'string':
+        print('calling strings')
+        data = Client.get(key).decode()
+    elif typecheck == 'hash':
+        data = Client.hgetall(key)
+    elif typecheck == 'list':
+        data = Client.lrange(key, 0, -1)
+    elif typecheck == 'none':
+        data = None
+        
+
+    return data
+
+def incrementer(counts=0):
+    counts +=1
+
+def observerables(obs):
+    for k in obs:
+        if k not in globals():
+            print("NOT IN GLOBALS", k)
+            globals()[str(k)] = ""
+
 
 if __name__ == "__main__":
     # delete()
     load()
-    y = "Cat"
-
-    load()
-    print('hello', Redis().get('x'))
-    print(Redis().keys())
-    pk()
+    observerables(['phrase'])
+    print (phrase)
+    print('type', type(phrase))
+    for i in "Recurse!":
+        phrase = phrase + i
     save()
 
 
