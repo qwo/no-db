@@ -1,5 +1,4 @@
-
-import hot_redis 
+import hot_redis
 from redis.client import Redis
 
 from itertools import zip_longest
@@ -7,13 +6,12 @@ from itertools import zip_longest
 
 """ Uses implicit 6379 Redis Client connection
 """
-Client = Redis() 
+Client = Redis()
 
 ignore_list = ["hot_redis", "Fast", "ignore_list", "main"]
 
 
 class Fast(object):
-
     def __init__(self, var, val):
 
         if type(val) == dict:
@@ -48,7 +46,7 @@ class Fast(object):
 
 def save():
     for k in globals().keys():
-        if not k.startswith('_') and k not in ignore_list:
+        if not k.startswith("_") and k not in ignore_list:
             Fast(k, globals()[k])
 
 
@@ -73,6 +71,7 @@ def delete():
 def keys():
     return [i.decode() for i in Redis().keys()]
 
+
 def load():
     for k in keys():
         # print('PRE-K', k)
@@ -85,21 +84,22 @@ def _get(key):
     typecheck = Client.type(key).decode()
     # print("THE TYPECHECK", typecheck, key)
 
-    if typecheck == 'string':
+    if typecheck == "string":
         # print('calling strings')
         data = Client.get(key).decode()
-    elif typecheck == 'hash':
+    elif typecheck == "hash":
         data = Client.hgetall(key)
-    elif typecheck == 'list':
+    elif typecheck == "list":
         data = Client.lrange(key, 0, -1)
-    elif typecheck == 'none':
+    elif typecheck == "none":
         data = None
-        
 
     return data
 
+
 def incrementer(counts=0):
-    counts +=1
+    counts += 1
+
 
 def observerables(obs):
     for k in obs:
@@ -113,20 +113,23 @@ def magic(func):
         load()
         func()
         save()
+
     return wrapper
+
 
 @magic
 def main():
-    observerables(['phrase'])
+    observerables(["phrase"])
     for i in "Recurse!":
         phrase = phrase + i
 
+
 if __name__ == "__main__":
     load()
-    
-    observerables(['phrase'])
+
+    observerables(["phrase"])
 
     phrase = phrase + "Recurse!\n"
 
-    print (phrase)
+    print(phrase)
     save()
