@@ -104,7 +104,7 @@ def incrementer(counts=0):
 def observerables(obs):
     for k in obs:
         if k not in globals():
-            print("NOT IN GLOBALS", k)
+            # print("NOT IN GLOBALS", k)
             globals()[str(k)] = ""
 
 
@@ -122,8 +122,6 @@ def main():
         phrase = phrase + i
 
 if __name__ == "__main__":
-    # main()
-    # delete()
     load()
     
     observerables(['phrase'])

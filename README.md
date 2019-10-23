@@ -44,7 +44,7 @@ users = quick.List(Users)
 # From invocation to End No Abstraction 
 
 
-
+ docker run -p 6379:6379 --name some-redis -d redis redis-server --appendonly yes                                                 
 
 
 LICENSE
