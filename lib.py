@@ -29,26 +29,25 @@ class Fast(object):
             # print('str')
             instance = hot_redis.String(val, key=var)
         elif type(val) == int:
-            # print('int')
-            instance = hot_redis.Numeric(val, key=var)
+            print('int')
+            instance = hot_redis.Int(val, key=var)
         elif type(val) == None:
             # Not handled
             print('None Not handled')
         elif callable(val):
-            print('function')
+            # print('function')
             return None
         else:
-            print(type(val))
+            # print("else, None:", type(val))
             return None
             # instance = hot_redis(instance)
-        print("debug: ", var, val)
+        # print("debug: ", var, val)
         self.instance = instance
 
 
 def save():
     for k in globals().keys():
         if not k.startswith('_') and k not in ignore_list:
-            print(k)
             Fast(k, globals()[k])
 
 
@@ -69,8 +68,9 @@ def delete():
         # delete the key
         r.delete(key)
 
-def pk():
-    print(Redis().keys())
+
+def keys():
+    return [i.decode() for i in Redis().keys()]
 
 def load():
     for k in Redis().keys():
