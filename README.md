@@ -1,6 +1,8 @@
 Quick
 ===
 
+[![asciicast](https://asciinema.org/a/276441.svg)](https://asciinema.org/a/276441)
+
 Datastore abstracted to primative types. We want to be the 
 
 - ACID Compliant

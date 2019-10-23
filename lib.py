@@ -126,8 +126,7 @@ if __name__ == "__main__":
     
     observerables(['phrase'])
 
-    for i in "Recurse!":
-        phrase = phrase + i
+    phrase = phrase + "Recurse!\n"
 
     print (phrase)
     save()
