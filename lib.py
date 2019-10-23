@@ -118,6 +118,16 @@ if __name__ == "__main__":
     save()
 
 
+
+"""
+
+    # incrementer(phrase)
+    # y = "Kitten"
+    # x = {"cat": "meow", "dog": "woof"}
+    # z = ["parrot", "elephant", "fish"]
+"""
+
+
 # List                list                          list
 # Set                 set                           set
 # Dict                dict                          hash
