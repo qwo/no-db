@@ -4,7 +4,13 @@ from redis.client import Redis
 
 from itertools import zip_longest
 
+
+""" Uses implicit 6379 Redis Client connection
+"""
+Client = Redis() 
+
 ignore_list = ["hot_redis", "Fast", "ignore_list", "main"]
+
 
 class Fast(object):
 
