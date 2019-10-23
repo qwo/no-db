@@ -29,11 +29,12 @@ class Fast(object):
             # print('str')
             instance = hot_redis.String(val, key=var)
         elif type(val) == int:
-            print('int')
+            # print('int')
             instance = hot_redis.Int(val, key=var)
         elif type(val) == None:
             # Not handled
-            print('None Not handled')
+            # print('None Not handled')
+            return None
         elif callable(val):
             # print('function')
             return None
@@ -74,18 +75,18 @@ def keys():
 
 def load():
     for k in keys():
-        print('PRE-K', k)
+        # print('PRE-K', k)
         fetch = _get(k)
-        print('fetched: {} for {}'.format(fetch, k) )
+        # print('fetched: {} for {}'.format(fetch, k) )
         globals()[k] = fetch
 
 
 def _get(key):
     typecheck = Client.type(key).decode()
-    print("THE TYPECHECK", typecheck, key)
+    # print("THE TYPECHECK", typecheck, key)
 
     if typecheck == 'string':
-        print('calling strings')
+        # print('calling strings')
         data = Client.get(key).decode()
     elif typecheck == 'hash':
         data = Client.hgetall(key)
@@ -130,7 +131,7 @@ if __name__ == "__main__":
     for i in "Recurse!":
         phrase = phrase + i
 
-
+    print (phrase)
     save()
 
 
