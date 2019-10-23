@@ -116,6 +116,7 @@ def magic(func):
 
 @magic
 def main():
+    observerables(['phrase'])
     for i in "Recurse!":
         phrase = phrase + i
 
@@ -123,9 +124,12 @@ if __name__ == "__main__":
     # main()
     # delete()
     load()
+    
     observerables(['phrase'])
-    print (phrase)
-    # print('type', type(phrase))
+
+    for i in "Recurse!":
+        phrase = phrase + i
+
 
     save()
 
